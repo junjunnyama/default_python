@@ -48,5 +48,5 @@ uv run python main.py
 
 ## 参考
 
-[uv の使い方](https://note.com/npaka/n/n44c54312fb04)
+[uv の使い方](https://note.com/npaka/n/n44c54312fb04)  
 [Python開発環境をVSCode+uvで整える](https://qiita.com/ebimontblanc/items/8a0a52b10a82ba800ea5)
