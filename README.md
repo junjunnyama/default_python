@@ -2,10 +2,10 @@
 
 uv + Ruff + mypy を組み合わせた Python プロジェクトのテンプレート。
 
-- Python 3.13
-- パッケージ管理:[uv](https://docs.astral.sh/uv/)
-- リンター/フォーマッター:[Ruff](https://docs.astral.sh/ruff/)
-- 静的型チェック:[mypy](https://mypy.readthedocs.io/)
+- Python: 3.13
+- パッケージ管理: [uv](https://docs.astral.sh/uv/)
+- リンター/フォーマッター: [Ruff](https://docs.astral.sh/ruff/)
+- 静的型チェック: [mypy](https://mypy.readthedocs.io/)
 
 ## Setup
 
