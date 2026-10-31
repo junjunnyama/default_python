@@ -1,0 +1,21 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python",
+
+  // --- Ruff ---------------------------------------------------------------------------------
+  "[python]": {
+    //保存時にコードを整理
+    "editor.formatOnSave": true,
+    //デフォルトのformatterにruffを指定
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      //保存時にimportを整理
+      "source.organizelmports": "explicit"
+    }
+  },
+
+  // --- Mypy ---------------------------------------------------------------------------------
+  //設定ファイルの指定
+  "mypy-type-checker.args": [
+    " -- config=pyproject.toml"
+  ],
+}

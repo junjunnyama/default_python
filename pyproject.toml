@@ -1,0 +1,78 @@
+[project]
+name = "python-default"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "ruff>=0.11.12",  #リンター·フォーマッター
+  "mypy>=1.5.1",    # 静的型チェッカー
+]
+
+# ---サブディレクトリのインポート設定--------------------------------------------------------
+
+# [build-system]
+# requires = ["hatchling"]          #ビルドシステムに必要なパッケージ
+# build-backend = "hatchling.build" #ビルドシステムのバックエンドを指定
+
+# [tool.hatch.build.targets.wheel]
+# packages=[] #ビルド対象のパッケージを指定
+
+# --- Ruff ---------------------------------------------------------------------------------
+
+[tool.ruff]
+target-version = "py313"  # 構文チェック対象のPythonバージョン(pyupgradeに影響)
+line-length = 88          # 1行の最大文字数
+
+[tool.ruff.lint]
+select = [
+  "F",    # pyflakes              - 未使用インポート·変数などの基本的なエラー
+  "E",    # pycodestyle errors    - PEP8準拠チェック(エラー)
+  "W",    # pycodestyle warnings  - PEP8準拠チェック(警告)
+  "I",    # isort                 - importの並び順を統一
+  "D",    # pydocstyle            - docstringの書き方チェック
+  "UP",   # pyupgrade             - 古い書き方を新しい構文に自動更新
+  "B",    # flake8-bugbear        - ハグになりやすいパターンを検出
+  "N",    # pep8 naming           - 変数名や関数名の命名規則をチェック
+  "RUF",  # Ruff specific         - Ruff固有の追加ルール
+]
+
+ignore = [
+  "E402", # module-import-not-at-top-of-file        - sys.path操作後のimportを許可
+  # docstring-スクリプト向けに緩和
+  "D100", # missing-docstring-in-public-module      - モジュールdocstring省略可
+  "D101", # missing-docstring-in-public-class       - クラスdocstring省略可
+  "D104", # missing-docstring-in-public-package     - __init__.pyのdocstring省略可
+  "D105", # missing-docstring-in-magic-method       - __str__等のdocstring省略可
+  "D107", # missing-docstring-in -__init__          - __init__のdocstring省略可
+  "D202", # no-blank-lines-before-function          - 関数docstringの前の空行を許可
+  "D203", # one-blank-line-before-class             - D211と競合するため無効化
+  "D205", # blank-line-after-summary                - 1行docstringで改行不要
+  "D212", # multi-line-summary-first-line           - D213と競合するため無効化
+  "D415", # ends-in-punctuation                     - 末尾の句読点を省略可
+  #全角記号-日本語コメント·docstringを許可
+  "RUF001", # ambiguous-unicode-character-string    - 全角括弧等を許可
+  "RUF002", # ambiguous-unicode-character-docstring - 全角文字を含むdocstringを許可
+  "RUF003", # ambiguous-unicode-character-comment   - 全角文字を含むコメントを許可
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google" # Google styleに準拠(Args/Returns/Raises形式)
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # re-exportのための未使用インポートを許可
+
+[tool.ruff.format]
+quote-style = "double"  #ダブルクォートに統一
+indent-style = "space"  #スペースインデント(タブ不使用)
+
+# --- Mypy ---------------------------------------------------------------------------------
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports= true  # 型スタブ未整備のライブラリをエラーにしない
+warn_return_any = true        # Any型を返す関数に警告
+warn_unused_ignores = true    # 不要な type: ignore コメントに警告
